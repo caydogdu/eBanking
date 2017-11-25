@@ -8,12 +8,33 @@ These are the main abilities of project
 - Ability to create monetary accounts with initial balance
 - Ability to transfer money from one account to another
 
-This project was developed with spring boot. java 8 is required.
+This project was developed with spring boot. 
+Java 8 is required.
 
-run options
+There are 2 REST Service in this project.
+1) To open an account
+POST localhost:8081/accounts with body
+{
+	"name":"burcu",
+	"balance":70
+}
+
+2) To transfer from one account to another
+POST localhost:8081/transfers with body
+{
+	"nameFrom":"cemil",
+	"nameTo":"burcu",
+	"amount":50
+}
+
+You can also find sample requests in the sample-requests.pdf
+
+------------------------------------------------------------------
+
+Run options and deployment
 
 1- Running as a packaged application
-If you use the Spring Boot Maven or Gradle plugins to create an executable jar you can run your application using java -jar. For example:
+If you use the Spring Boot Maven or Gradle plugins first create an executable jar then you can run your application using java -jar. For example:
 $ java -jar target/ebanking-0.0.1-SNAPSHOT.jar
 It is also possible to run a packaged application with remote debugging support enabled. This allows you to attach a debugger to your packaged application:
 
@@ -22,4 +43,3 @@ The Spring Boot Maven plugin includes a run goal which can be used to quickly co
 
 $ mvn spring-boot:run
 
-You can send requests after you run the service. You can find sample requests in the sample-requests.pdf
