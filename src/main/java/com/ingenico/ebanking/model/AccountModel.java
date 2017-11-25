@@ -1,5 +1,11 @@
 package com.ingenico.ebanking.model;
 
+/**
+ * 
+ * @author caydogdu
+ *
+ * This is model for rest service
+ */
 public class AccountModel {
 
 	private double balance;

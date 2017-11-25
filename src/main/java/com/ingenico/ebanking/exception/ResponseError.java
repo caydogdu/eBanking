@@ -1,5 +1,11 @@
 package com.ingenico.ebanking.exception;
 
+/**
+ * 
+ * @author caydogdu
+ * 
+ * This is a error model for rest response
+ */
 public class ResponseError {
 
 	private String errorCode;

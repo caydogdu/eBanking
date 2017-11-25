@@ -1,5 +1,11 @@
 package com.ingenico.ebanking.exception;
 
+/**
+ * 
+ * @author caydogdu
+ * 
+ * This is a custom exception class for business rules
+ */
 public class ResponseException extends Exception {
 
 	/**

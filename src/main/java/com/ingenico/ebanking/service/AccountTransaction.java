@@ -18,7 +18,7 @@ import com.ingenico.ebanking.model.TransferModel;
  * 
  * @author caydogdu
  *
- * This is a class for account transactions
+ * This is a service for account transactions
  */
 @Service
 public class AccountTransaction implements Transaction {

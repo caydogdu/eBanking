@@ -4,6 +4,13 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.ingenico.ebanking.exception.ResponseError;
 
+/**
+ * 
+ * @author caydogdu
+ *
+ * This is a coomon response class for rest response
+ * @param <T>
+ */
 @JsonInclude(value = Include.NON_NULL)
 public class Response<T> {
 

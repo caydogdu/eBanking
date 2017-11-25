@@ -1,5 +1,11 @@
 package com.ingenico.ebanking.model;
 
+/**
+ * 
+ * @author caydogdu
+ *
+ * This is a model for rest service
+ */
 public class TransferModel {
 
 	private String nameFrom;

@@ -4,6 +4,7 @@ package com.ingenico.ebanking.account;
  * 
  * @author caydogdu
  *
+ * This is a interface for accounts
  */
 public interface Account {
 

@@ -23,6 +23,12 @@ import com.ingenico.ebanking.model.TransferModel;
 import com.ingenico.ebanking.response.Response;
 import com.ingenico.ebanking.service.AccountTransaction;
 
+/**
+ * 
+ * @author caydogdu
+ *
+ * This is a controller for rest services
+ */
 @Controller
 public class AccountController implements InitializingBean {
 
