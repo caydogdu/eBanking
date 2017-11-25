@@ -10,6 +10,7 @@ These are the main abilities of project
 
 This project was developed with spring boot. 
 Java 8 is required.
+Accounts stored in memory, no database was used.
 
 There are 2 REST Service in this project.
 1) To open an account
@@ -32,6 +33,8 @@ You can also find sample requests in the sample-requests.pdf
 ------------------------------------------------------------------
 
 Run options and deployment
+
+This project is a microservice. So you can easily run it.
 
 1- Running as a packaged application
 If you use the Spring Boot Maven or Gradle plugins first create an executable jar then you can run your application using java -jar. For example:
