@@ -35,7 +35,13 @@ public class AccountTransaction implements Transaction {
 	
 	public boolean transfer(TransferModel tm) throws Exception{
 		Account accountFrom = getAccount(tm.getNameFrom());
+		if(accountFrom == null){
+			throw new ResponseException("EBanking-02",tm.getNameFrom() + " not fond");
+		}
 		Account accountTo = getAccount(tm.getNameTo());
+		if(accountTo == null){
+			throw new ResponseException("EBanking-02",tm.getNameTo() + " not fond");
+		}
 		if(accountFrom.getBalance() >= tm.getAmount()){
 			accountFrom.withdraw(tm.getAmount());
 			accountTo.deposit(tm.getAmount());
@@ -52,7 +58,10 @@ public class AccountTransaction implements Transaction {
 	public Account getAccount(String name){
 		Optional<Account> account = accounts.stream()
 				.filter(acc -> acc.getName().equals(name)).findFirst();
-		return account.get();
+		if(account.isPresent()){
+			return account.get();
+		}
+		return null;
 	}
 	
 	public void displayAccounts(){

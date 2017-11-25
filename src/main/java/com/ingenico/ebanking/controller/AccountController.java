@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ingenico.ebanking.account.AbstractAccount;
 import com.ingenico.ebanking.exception.ExceptionHandler;
+import com.ingenico.ebanking.exception.ResponseException;
 import com.ingenico.ebanking.model.AccountModel;
 import com.ingenico.ebanking.model.TransferModel;
 import com.ingenico.ebanking.response.Response;
@@ -86,6 +87,10 @@ public class AccountController implements InitializingBean {
 			// display accounts after transfer
 			accountTransaction.displayAccounts();
 			
+		} catch (ResponseException e) {
+			logger.error("error", e.getExceptionCode());
+			response.getBody().setSuccess(false);
+			response.getBody().setError(ExceptionHandler.errorResponse(e));
 		} catch (Exception e) {
 			logger.error("error", e);
 			response.getBody().setSuccess(false);
