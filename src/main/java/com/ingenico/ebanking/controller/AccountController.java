@@ -55,8 +55,7 @@ public class AccountController implements InitializingBean {
 			response.getBody().setResult(account);
 			
 			// display accounts after opening
-			accountTransaction.getAccounts().forEach(
-					a -> logger.info("name: " + a.getName() + ", balance: " + a.getBalance()));
+			accountTransaction.displayAccounts();
 			
 		} catch (Exception e) {
 			logger.error("error", e);
@@ -85,8 +84,7 @@ public class AccountController implements InitializingBean {
 			response.getBody().setSuccess(true);
 			
 			// display accounts after transfer
-			accountTransaction.getAccounts().forEach(
-					a -> logger.info("name: " + a.getName() + ", balance: " + a.getBalance()));
+			accountTransaction.displayAccounts();
 			
 		} catch (Exception e) {
 			logger.error("error", e);

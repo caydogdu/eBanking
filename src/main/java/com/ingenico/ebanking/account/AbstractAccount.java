@@ -18,9 +18,9 @@ public abstract class AbstractAccount implements Account {
     	this.name = name;
     }
 
-    public abstract void deposit(double amount); 
+    public abstract boolean deposit(double amount); 
 
-    public abstract void withdraw(double amount);
+    public abstract boolean withdraw(double amount);
 
     public abstract double getBalance();
 

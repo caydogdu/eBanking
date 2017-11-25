@@ -14,13 +14,19 @@ public class CurrentAccount extends AbstractAccount {
 	}
 
 	@Override
-	public void deposit(double amount) {
+	public synchronized boolean deposit(double amount) {
 		balance += amount;
+		return true;
 	}
 
 	@Override
-	public void withdraw(double amount) {
-		balance -= amount;
+	public synchronized boolean withdraw(double amount) {
+		// to prevent overdraw
+		if(balance >= amount){
+			balance -= amount;
+			return true;
+		}
+		return false;
 	}
 
 	@Override

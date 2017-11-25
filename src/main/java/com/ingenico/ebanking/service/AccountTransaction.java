@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.ingenico.ebanking.account.Account;
@@ -21,6 +23,8 @@ import com.ingenico.ebanking.model.TransferModel;
 @Service
 public class AccountTransaction implements Transaction {
 
+	private static final Logger logger = LoggerFactory.getLogger(AccountTransaction.class);
+	
 	List<Account> accounts = new ArrayList<>();
 	
 	public Account openAccount(AccountModel acc){
@@ -29,7 +33,7 @@ public class AccountTransaction implements Transaction {
 		return account;
 	}
 	
-	public boolean transfer(TransferModel tm) throws ResponseException{
+	public boolean transfer(TransferModel tm) throws Exception{
 		Account accountFrom = getAccount(tm.getNameFrom());
 		Account accountTo = getAccount(tm.getNameTo());
 		if(accountFrom.getBalance() >= tm.getAmount()){
@@ -49,5 +53,10 @@ public class AccountTransaction implements Transaction {
 		Optional<Account> account = accounts.stream()
 				.filter(acc -> acc.getName().equals(name)).findFirst();
 		return account.get();
+	}
+	
+	public void displayAccounts(){
+		getAccounts().forEach(
+				acc -> logger.info("name: " + acc.getName() + ", balance: " + acc.getBalance()));
 	}
 }

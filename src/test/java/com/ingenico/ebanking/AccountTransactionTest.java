@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.ingenico.ebanking.account.Account;
+import com.ingenico.ebanking.exception.ResponseException;
 import com.ingenico.ebanking.model.AccountModel;
 import com.ingenico.ebanking.model.TransferModel;
 import com.ingenico.ebanking.service.AccountTransaction;
@@ -46,9 +47,6 @@ public class AccountTransactionTest {
 		accountTransaction.openAccount(account2);
 		assertEquals(2, accountTransaction.getAccounts().size());
 		
-		acc1.withdraw(30);
-		assertEquals(70, acc1.getBalance(),0);
-		
 	}
 	
 	/**
@@ -58,18 +56,16 @@ public class AccountTransactionTest {
 	@Test
 	public void transfer() throws Exception {
 
-		accountTransaction.getAccounts().forEach(
-				acc -> logger.info("name: " + acc.getName() + ", balance: " + acc.getBalance()));
+		accountTransaction.displayAccounts();
 		
 		TransferModel tm = new TransferModel();
 		tm.setNameFrom("cemil");
 		tm.setNameTo("burcu");
-		tm.setAmount(20);
+		tm.setAmount(10);
 		
 		accountTransaction.transfer(tm);
 		
-		accountTransaction.getAccounts().forEach(
-				acc -> logger.info("name: " + acc.getName() + ", balance: " + acc.getBalance()));
+		accountTransaction.displayAccounts();
 
 	}
 	
@@ -80,6 +76,49 @@ public class AccountTransactionTest {
 	@Test
 	public void simultaneousTransfer() throws Exception {
 		
+		accountTransaction.displayAccounts();
+		
+		TransferModel tm = new TransferModel();
+		tm.setNameFrom("cemil");
+		tm.setNameTo("burcu");
+		tm.setAmount(40);
+		
+		Thread t1 = new Thread(new ParallelTask(accountTransaction, tm), "Thread - T1");
+		Thread t2 = new Thread(new ParallelTask(accountTransaction, tm), "Thread - T2");
+		Thread t3 = new Thread(new ParallelTask(accountTransaction, tm), "Thread - T3");
+		
+		t1.start();
+		t2.start();
+		t3.start();
+		
+		assertEquals(true, accountTransaction.getAccount("cemil").getBalance() > 0);
+
 	}
 	
+	private static class ParallelTask implements Runnable {
+		
+		AccountTransaction accountTransaction;
+		TransferModel tm;
+		
+		public ParallelTask(AccountTransaction accountTransaction, TransferModel tm){
+			this.accountTransaction = accountTransaction;
+			this.tm = tm;
+		}
+		
+		@Override
+		public void run() {
+			logger.info(Thread.currentThread().getName() + " is executing this code");
+			try {
+				accountTransaction.transfer(tm);
+				accountTransaction.displayAccounts();
+			} catch (ResponseException e) {
+				logger.error(e.getExceptionDescription());
+			} catch (Exception e) {
+				logger.error(e.getMessage());
+			}
+			
+			
+		}
+	}
+
 }

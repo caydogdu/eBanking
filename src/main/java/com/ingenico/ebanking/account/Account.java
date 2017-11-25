@@ -7,9 +7,9 @@ package com.ingenico.ebanking.account;
  */
 public interface Account {
 
-	public void deposit(double amount); 
+	public boolean deposit(double amount); 
 
-    public void withdraw(double amount);
+    public boolean withdraw(double amount);
 	
 	public double getBalance();
 
