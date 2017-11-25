@@ -36,11 +36,11 @@ public class AccountTransaction implements Transaction {
 	public boolean transfer(TransferModel tm) throws Exception{
 		Account accountFrom = getAccount(tm.getNameFrom());
 		if(accountFrom == null){
-			throw new ResponseException("EBanking-02",tm.getNameFrom() + " not fond");
+			throw new ResponseException("EBanking-02","account " + tm.getNameFrom() + " not fond");
 		}
 		Account accountTo = getAccount(tm.getNameTo());
 		if(accountTo == null){
-			throw new ResponseException("EBanking-02",tm.getNameTo() + " not fond");
+			throw new ResponseException("EBanking-02","account " + tm.getNameTo() + " not fond");
 		}
 		if(accountFrom.getBalance() >= tm.getAmount()){
 			accountFrom.withdraw(tm.getAmount());

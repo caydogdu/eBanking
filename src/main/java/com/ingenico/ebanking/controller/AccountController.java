@@ -88,7 +88,7 @@ public class AccountController implements InitializingBean {
 			accountTransaction.displayAccounts();
 			
 		} catch (ResponseException e) {
-			logger.error("error", e.getExceptionCode());
+			logger.error("error: " + e.getExceptionDescription());
 			response.getBody().setSuccess(false);
 			response.getBody().setError(ExceptionHandler.errorResponse(e));
 		} catch (Exception e) {
