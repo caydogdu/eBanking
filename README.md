@@ -15,21 +15,21 @@ Accounts stored in memory, no database was used.
 
 There are 2 REST Service in this project.
 
-  1) To open an account
+To open an account
 
     POST localhost:8081/accounts with body
     {
-      "name":"burcu",
-      "balance":70
+        "name":"burcu",
+        "balance":70
     }
 
-   2) To transfer from one account to another
+To transfer from one account to another
     
     POST localhost:8081/transfers with body
     {
-      "nameFrom":"cemil",
-      "nameTo":"burcu",
-      "amount":50
+        "nameFrom":"cemil",
+        "nameTo":"burcu",
+        "amount":50
     }
 
 You can also find sample requests in the sample-requests.pdf
