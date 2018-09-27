@@ -32,8 +32,6 @@ To transfer from one account to another
 
 You can also find sample requests in the sample-requests.pdf
 
-------------------------------------------------------------------
-
 ## Run options and deployment
 
 This project is a microservice. So you can easily run it.
