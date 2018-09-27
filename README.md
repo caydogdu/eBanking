@@ -9,9 +9,7 @@ These are the main abilities of project
     Ability to create monetary accounts with initial balance
     Ability to transfer money from one account to another
 
-This project was developed with spring boot. 
-Java 8 is required.
-Accounts stored in memory, no database was used.
+This project was developed with spring boot. Java 8 is required. Accounts stored in memory, no database was used.
 
 There are 2 REST Service in this project.
 
@@ -36,7 +34,7 @@ You can also find sample requests in the sample-requests.pdf
 
 ------------------------------------------------------------------
 
-Run options and deployment
+## Run options and deployment
 
 This project is a microservice. So you can easily run it.
 
